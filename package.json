@@ -1,5 +1,5 @@
 {
-  "name": "node-sleipner-memcached",
+  "name": "sleipner-js-memcached",
   "version": "0.0.1",
   "description": "A Sleipner cache provider using Memcached\"",
   "main": "index.js",
