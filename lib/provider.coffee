@@ -16,7 +16,6 @@ module.exports = exports = class
       log: no
 
       create: (cb) ->
-        console.log "hosts", hosts
         client = new Memcached(hosts)
         client.connect (error) ->
           cb(error, client)
@@ -25,7 +24,6 @@ module.exports = exports = class
         client.disconnect()
 
   get: (key, cb) ->
-    console.log "GET", key
     pool = @pool
     pool.acquire (error, client) ->
       if error or not client
@@ -36,8 +34,7 @@ module.exports = exports = class
           cb(error, data[key] if not error)
 
   set: (key, value, expires = 0) ->
-    console.log "SET", key
-    expires = expires - Date.now() if expires isnt 0
+    expires = parseInt(expires, 10) || 0
     pool = @pool
     pool.acquire (error, client) ->
       if error
